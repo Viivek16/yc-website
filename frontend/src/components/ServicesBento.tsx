@@ -1,9 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, BarChart3, Database, Coins, Layers } from "lucide-react";
+import { ArrowUpRight, BarChart3, Database, Coins, Layers, LineChart } from "lucide-react";
 
 export function ServicesBento() {
+  const cards = [
+    {
+      title: "Market Making",
+      icon: <BarChart3 className="w-10 h-10 text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-8" />,
+      desc: "Proprietary execution algorithms ensuring tight spreads, deep liquidity, and resilient order books across 50+ centralized and decentralized exchanges.",
+      colSpan: "md:col-span-2",
+    },
+    {
+      title: "Treasury Management",
+      icon: <Database className="w-10 h-10 text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-8" />,
+      desc: "Scientific modeling for sustainable token economies and professional treasury management.",
+      colSpan: "md:col-span-1",
+    },
+    {
+      title: "Programmatic Sales",
+      icon: <LineChart className="w-10 h-10 text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-8" />,
+      desc: "Zero-impact execution for institutional size orders. Engineered liquidation strategies without price suppression.",
+      colSpan: "md:col-span-1",
+    },
+    {
+      title: "TradePoint",
+      icon: <Layers className="w-10 h-10 text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-8" />,
+      desc: "Our exclusive institutional-grade trading infrastructure, enabling direct market access and real-time analytics.",
+      colSpan: "md:col-span-1",
+    },
+    {
+      title: "VC & Strategic Partnership",
+      icon: <Coins className="w-10 h-10 text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-8" />,
+      desc: "Early-stage capital and long-term advisory for transformative Web3 infrastructure and consumer applications.",
+      colSpan: "md:col-span-1",
+    }
+  ];
+
   return (
     <section className="relative w-full bg-black py-24 sm:py-32">
       <div className="max-w-7xl mx-auto px-6 sm:px-12">
@@ -32,92 +65,32 @@ export function ServicesBento() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[320px] gap-6">
-          
-          {/* Card 1 - Main Feature */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="md:col-span-2 relative overflow-hidden rounded-3xl bg-[#333333]/40 border border-[#666666]/30 p-8 sm:p-10 group cursor-pointer hover:bg-[#333333]/60 transition-colors duration-300"
-          >
-            <div className="absolute top-0 right-0 p-8 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 text-[#FCD000] transition-all duration-300">
-              <ArrowUpRight className="w-8 h-8" />
-            </div>
-            
-            <BarChart3 className="w-10 h-10 text-[#FCD000] mb-8" />
-            
-            <h3 className="text-2xl sm:text-3xl font-gilmer font-bold text-white mb-4">
-              Algorithmic Market Making
-            </h3>
-            <p className="text-[#999999] font-metro text-lg max-w-md">
-              Proprietary execution algorithms ensuring tight spreads, deep liquidity, and resilient order books across 50+ centralized and decentralized exchanges.
-            </p>
-
-            {/* Decorative background element */}
-            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-[#FCD000]/5 blur-[100px] rounded-full group-hover:bg-[#FCD000]/10 transition-colors duration-500" />
-          </motion.div>
-
-          {/* Card 2 */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative overflow-hidden rounded-3xl bg-[#333333]/40 border border-[#666666]/30 p-8 sm:p-10 group cursor-pointer hover:bg-[#333333]/60 transition-colors duration-300"
-          >
-            <Database className="w-10 h-10 text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-8" />
-            <h3 className="text-xl sm:text-2xl font-gilmer font-bold text-white mb-4">
-              OTC & Block Trading
-            </h3>
-            <p className="text-[#999999] font-metro">
-              Zero-impact execution for institutional size orders. Deep pools of capital with instant pricing capabilities.
-            </p>
-          </motion.div>
-
-          {/* Card 3 */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative overflow-hidden rounded-3xl bg-[#333333]/40 border border-[#666666]/30 p-8 sm:p-10 group cursor-pointer hover:bg-[#333333]/60 transition-colors duration-300"
-          >
-            <Coins className="w-10 h-10 text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-8" />
-            <h3 className="text-xl sm:text-2xl font-gilmer font-bold text-white mb-4">
-              Strategic Venture
-            </h3>
-            <p className="text-[#999999] font-metro">
-              Early-stage capital and long-term advisory for transformative Web3 infrastructure and consumer applications.
-            </p>
-          </motion.div>
-
-          {/* Card 4 - Spans 2 cols */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="md:col-span-2 relative overflow-hidden rounded-3xl bg-[#333333]/40 border border-[#666666]/30 p-8 sm:p-10 group cursor-pointer hover:bg-[#333333]/60 transition-colors duration-300 flex flex-col sm:flex-row gap-8 items-start sm:items-center"
-          >
-            <div className="flex-1">
-              <Layers className="w-10 h-10 text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-8" />
-              <h3 className="text-2xl sm:text-3xl font-gilmer font-bold text-white mb-4">
-                Tokenomics & Treasury
+          {cards.map((card, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className={`${card.colSpan} relative overflow-hidden rounded-none bg-[#050505] border border-[#333333] p-8 sm:p-10 group cursor-pointer hover:bg-[#111111] transition-all duration-300`}
+            >
+              {/* Highlight Hover Bar */}
+              <div className="absolute top-0 left-0 bottom-0 w-1 bg-[#FCD000] scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-300" />
+              
+              <div className="absolute top-0 right-0 p-8 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 text-[#FCD000] transition-all duration-300">
+                <ArrowUpRight className="w-8 h-8" />
+              </div>
+              
+              {card.icon}
+              
+              <h3 className="text-xl sm:text-2xl font-gilmer font-bold text-white mb-4">
+                {card.title}
               </h3>
-              <p className="text-[#999999] font-metro text-lg max-w-sm">
-                Scientific modeling for sustainable token economies and professional treasury management.
+              <p className="text-[#999999] font-metro text-base sm:text-lg max-w-md">
+                {card.desc}
               </p>
-            </div>
-            
-            {/* Abstract visual representation on the right */}
-            <div className="hidden sm:block w-48 h-48 relative opacity-50 group-hover:opacity-100 transition-opacity duration-500">
-              <div className="absolute inset-0 border border-[#666666] rounded-full animate-[spin_10s_linear_infinite]" />
-              <div className="absolute inset-4 border border-[#FCD000]/50 rounded-full animate-[spin_7s_linear_infinite_reverse]" />
-              <div className="absolute inset-8 border border-[#666666] rounded-full animate-[spin_5s_linear_infinite]" />
-            </div>
-          </motion.div>
-
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,52 +1,51 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
-import { SequenceBackground } from "./SequenceBackground";
 
 export function Hero() {
-  return (
-    <section className="relative h-screen w-full overflow-hidden bg-black selection:bg-[#FCD000] selection:text-black">
-      {/* Layer 0: Background Engine (which contains canvas set to z-0) */}
-      <SequenceBackground />
+  const containerRef = useRef<HTMLDivElement>(null);
 
-      {/* Layer 1: The Dark Overlay (Scrim) */}
-      <div className="absolute inset-0 bg-black/60 z-10" />
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Staggered upward fade-in
+      gsap.from(".hero-element", {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+        delay: 0.1
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden selection:bg-[#FCD000] selection:text-black">
+      {/* Background is now detached and fixed globally, so Hero is transparent */}
 
       {/* Layer 2: The Content Container */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-start justify-center h-full text-left">
         <div className="w-full max-w-4xl">
           {/* Main Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.05] tracking-tight text-white font-gilmer font-bold text-balance"
-          >
+          <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.05] tracking-tight text-white font-gilmer font-bold text-balance">
             Institutional Liquidity.
             <br />
             <span className="text-[#FCD000] italic pr-2 drop-shadow-[0_0_15px_rgba(252,208,0,0.5)]"> Algorithmic Precision.</span>
             <br />
             Strategic Capital.
-          </motion.h1>
+          </h1>
 
           {/* Sub-headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-            className="mt-8 mb-12 max-w-2xl text-lg sm:text-xl text-[#999999] font-metro font-medium leading-relaxed text-balance text-left"
-          >
+          <p className="hero-element mt-8 mb-12 max-w-2xl text-lg sm:text-xl text-[#999999] font-metro font-medium leading-relaxed text-balance text-left">
             We architect market-neutral liquidity, advanced token distribution, and venture support to engineer sustainable market health for the world’s leading Web3 projects.
-          </motion.p>
+          </p>
 
           {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row items-start justify-start gap-4 sm:gap-6 text-left"
-          >
+          <div className="hero-element flex flex-col sm:flex-row items-start justify-start gap-4 sm:gap-6 text-left">
             <Button 
               size="lg" 
               className="group relative overflow-hidden bg-[#FCD000] text-black hover:bg-[#F8C200] font-gilmer font-semibold tracking-wide text-base min-w-[200px] h-14 rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_4px_20px_rgba(252,208,0,0.4)]"
@@ -61,7 +60,7 @@ export function Hero() {
             >
               <span className="w-full text-center">Explore Our Solutions</span>
             </Button>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
