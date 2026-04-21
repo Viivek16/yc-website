@@ -31,7 +31,7 @@ export function Footer() {
 
   return (
     <footer ref={containerRef} className="bg-[#000000] pt-32 pb-12 overflow-hidden border-t border-[#333333]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-start text-left w-full">
+      <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32 flex flex-col items-start text-left w-full">
         
         {/* Main Structured Footer Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 w-full mb-32">

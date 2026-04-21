@@ -38,7 +38,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(252,208,0,0.03)_0%,rgba(0,0,0,0)_50%)] z-10 pointer-events-none" />
 
       {/* Layer 2: Content Container */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-start justify-center h-full text-left pt-24 pb-32">
+      <div className="relative z-20 w-full px-6 md:px-16 lg:px-24 xl:px-32 flex flex-col items-start justify-center h-full text-left pt-24 pb-32">
         
         {/* Eyebrow Label */}
         <div className="hero-element mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1 px-3 backdrop-blur-md">

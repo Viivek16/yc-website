@@ -41,7 +41,7 @@ export function NumbersTicker() {
     <section ref={containerRef} className="relative w-full border-b border-white/[0.05] bg-[#020202] py-24 sm:py-32 overflow-hidden">
       
       {/* Strict left-aligned reading container */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
+      <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32 relative z-10 w-full">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8 w-full border-t border-[#333333]/50 pt-16 relative">
           
           {/* subtle scanning highlight */}

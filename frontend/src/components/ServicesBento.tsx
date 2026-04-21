@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ArrowUpRight, BarChart3, Database, Coins, Layers, LineChart } from "lucide-react";
+import { ArrowUpRight, BarChart3, Database, Coins, LineChart } from "lucide-react";
 
 export function ServicesBento() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,16 +27,10 @@ export function ServicesBento() {
       colSpan: "md:col-span-1",
     },
     {
-      title: "TradePoint",
-      icon: <Layers className="w-8 h-8 text-[#999999] group-hover:text-[#FCD000] transition-colors duration-500 mb-10" />,
-      desc: "Our exclusive institutional-grade trading infrastructure, enabling direct market access and real-time analytics.",
-      colSpan: "md:col-span-1",
-    },
-    {
       title: "VC & Strategic Partnership",
       icon: <Coins className="w-8 h-8 text-[#999999] group-hover:text-[#FCD000] transition-colors duration-500 mb-10" />,
-      desc: "Early-stage capital and long-term advisory for transformative Web3 infrastructure and consumer applications.",
-      colSpan: "md:col-span-1",
+      desc: "Early-stage capital and long-term advisory for transformative Web3 infrastructure and consumer applications. Our network is our moat.",
+      colSpan: "md:col-span-2",
     }
   ];
 
@@ -65,7 +59,7 @@ export function ServicesBento() {
 
   return (
     <section ref={containerRef} className="relative w-full bg-[#000000] py-24 sm:py-40">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12">
+      <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32">
         
         <div className="mb-20 max-w-2xl flex flex-col items-start text-left">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1 px-3">
@@ -89,6 +83,11 @@ export function ServicesBento() {
             <div 
               key={idx}
               className={`bento-item ${card.colSpan} p-1.5 rounded-none bg-black ring-1 ring-white/10 group cursor-pointer`}
+              onClick={() => {
+                if (card.title === "Market Making") {
+                  window.location.href = "/market-making";
+                }
+              }}
             >
               {/* Layer 2: Inner Core */}
               <div className="relative w-full h-full bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] border border-white/5 p-8 sm:p-10 flex flex-col justify-end transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-[#0a0a0a] overflow-hidden">

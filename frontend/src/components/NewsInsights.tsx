@@ -44,7 +44,7 @@ export function NewsInsights() {
         <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1639762681485-074b7f4ecdf0?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center mix-blend-screen mask-image-[linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]" style={{ WebkitMaskImage: 'radial-gradient(circle at right, black, transparent 80%)' }} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col items-start align-left text-left w-full">
+      <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32 relative z-10 flex flex-col items-start align-left text-left w-full">
         
         <div className="flex w-full justify-between items-end mb-20 border-b border-[#333333]/50 pb-6 flex-wrap gap-4">
           <div className="flex flex-col items-start">
