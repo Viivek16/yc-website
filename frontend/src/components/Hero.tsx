@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
+import { SequenceBackground } from "./SequenceBackground";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,13 +26,21 @@ export function Hero() {
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden selection:bg-[#FCD000] selection:text-black">
-      {/* Background is now detached and fixed globally, so Hero is transparent */}
+      {/* Background Engine - Restoring dynamic video overlay style */}
+      <SequenceBackground />
 
-      {/* Layer 2: The Content Container */}
+      {/* Alternatively, if you prefer true HTML5 video:
+       <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0" src="/background.mp4" />
+      */}
+       
+      {/* Layer 1: The Dark Overlay (Scrim) */}
+      <div className="absolute inset-0 bg-black/60 z-10" />
+
+      {/* Layer 2: The strictly left-aligned Content Container */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-start justify-center h-full text-left">
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-4xl flex flex-col items-start">
           {/* Main Headline */}
-          <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.05] tracking-tight text-white font-gilmer font-bold text-balance">
+          <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[1.05] tracking-tight text-white font-gilmer font-bold text-left text-balance">
             Institutional Liquidity.
             <br />
             <span className="text-[#FCD000] italic pr-2 drop-shadow-[0_0_15px_rgba(252,208,0,0.5)]"> Algorithmic Precision.</span>
