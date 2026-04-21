@@ -15,16 +15,20 @@ export function NumbersTicker() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(".metric-item", 
-        { opacity: 0, y: 20 },
+      // Premium cascading entry
+      gsap.fromTo(
+        ".metric-item",
+        { opacity: 0, x: -30, filter: "blur(5px)" },
         { 
           opacity: 1, 
-          y: 0, 
-          duration: 0.6, 
-          stagger: 0.1, 
+          x: 0, 
+          filter: "blur(0px)",
+          duration: 1.2, 
+          stagger: 0.15, 
+          ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 80%",
+            start: "top 85%",
             once: true
           }
         }
@@ -34,21 +38,31 @@ export function NumbersTicker() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full border-y border-[#333333] bg-black py-16 sm:py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-[#020202] pointer-events-none" />
+    <section ref={containerRef} className="relative w-full border-b border-white/[0.05] bg-[#020202] py-24 sm:py-32 overflow-hidden">
       
       {/* Strict left-aligned reading container */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full flex flex-col items-start justify-start text-left">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8 w-full border-t border-[#333333]/50 pt-16 relative">
+          
+          {/* subtle scanning highlight */}
+          <div className="absolute top-0 left-0 h-[1px] w-64 bg-gradient-to-r from-transparent via-[#FCD000] to-transparent animate-[pan_3s_linear_infinite]" style={{ animation: "pan 4s linear infinite" }} />
+          <style dangerouslySetInnerHTML={{__html: `
+            @keyframes pan {
+              0% { transform: translateX(-100%); opacity: 0; }
+              50% { opacity: 1; }
+              100% { transform: translateX(100vh); opacity: 0; }
+            }
+          `}} />
+
           {metrics.map((metric, idx) => (
             <div 
               key={idx}
-              className="metric-item flex flex-col items-start text-left"
+              className="metric-item flex flex-col items-start border-l border-[#333333]/30 pl-6 group transition-all duration-500 hover:border-[#FCD000]/50"
             >
-              <h3 className="text-4xl sm:text-5xl font-gilmer font-bold text-white mb-3 tracking-tight">
+              <h3 className="text-5xl sm:text-6xl font-gilmer font-bold text-white mb-2 tracking-tighter transition-colors duration-500 group-hover:text-[#FCD000]">
                 {metric.value}
               </h3>
-              <p className="text-[#999999] font-metro font-medium text-sm sm:text-base uppercase tracking-widest block">
+              <p className="text-[#666666] font-metro font-semibold text-xs sm:text-sm uppercase tracking-[0.15em] leading-relaxed max-w-[150px]">
                 {metric.label}
               </p>
             </div>
