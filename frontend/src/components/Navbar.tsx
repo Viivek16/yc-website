@@ -8,7 +8,7 @@ import Link from "next/link";
 export function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isHoveringProducts, setIsHoveringProducts] = useState(false);
+  const [isHoveringServices, setIsHoveringServices] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +35,7 @@ export function Navbar() {
       transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
       className="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 px-6 pointer-events-none"
     >
-      <div className="pointer-events-auto flex items-center justify-between w-full max-w-7xl bg-black/60 backdrop-blur-2xl border border-white/10 rounded-none px-8 py-4 shadow-2xl">
+      <div className="pointer-events-auto flex items-center justify-between w-full bg-black/60 backdrop-blur-2xl border border-white/10 rounded-none px-8 py-6 shadow-2xl transition-all duration-300">
         
         {/* Brand */}
         <Link href="/" className="font-gilmer font-bold text-white text-xl tracking-tighter">
@@ -45,20 +45,19 @@ export function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 font-metro text-sm font-semibold tracking-wide text-white">
           <Link href="/" className="hover:text-[#FCD000] transition-colors">Home</Link>
-          <Link href="#" className="hover:text-[#FCD000] transition-colors">About Us</Link>
           
           {/* Dropdown Container */}
           <div 
             className="relative h-full flex items-center cursor-pointer"
-            onMouseEnter={() => setIsHoveringProducts(true)}
-            onMouseLeave={() => setIsHoveringProducts(false)}
+            onMouseEnter={() => setIsHoveringServices(true)}
+            onMouseLeave={() => setIsHoveringServices(false)}
           >
             <span className="flex items-center gap-1 hover:text-[#FCD000] transition-colors py-2">
-              Products <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isHoveringProducts ? 'rotate-180 text-[#FCD000]' : ''}`} />
+              Services <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isHoveringServices ? 'rotate-180 text-[#FCD000]' : ''}`} />
             </span>
             
             <AnimatePresence>
-              {isHoveringProducts && (
+              {isHoveringServices && (
                 <motion.div 
                   initial={{ opacity: 0, y: 15, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -74,7 +73,8 @@ export function Navbar() {
               )}
             </AnimatePresence>
           </div>
-          
+
+          <Link href="#" className="hover:text-[#FCD000] transition-colors">About Us</Link>
           <Link href="#" className="hover:text-[#FCD000] transition-colors">Contact</Link>
         </div>
 

@@ -2,18 +2,23 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import { SequenceBackground } from "./SequenceBackground";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const ctx = gsap.context(() => {
       // High-end agency staggered reveal using advanced cubic-bezier approximations
+      // Fading up from 30px down
       gsap.fromTo(
         ".hero-element",
-        { y: 80, opacity: 0, filter: "blur(10px)" },
+        { y: 30, opacity: 0, filter: "blur(10px)" },
         {
           y: 0,
           opacity: 1,
@@ -24,14 +29,29 @@ export function Hero() {
           delay: 0.2,
         }
       );
+
+      // Subtle parallax effect on the background lines
+      gsap.to(bgRef.current, {
+        yPercent: 20, // Moves down slightly as user scrolls down
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
     <section ref={containerRef} className="relative h-screen min-h-[100dvh] w-full overflow-hidden bg-[#000000] selection:bg-[#FCD000] selection:text-black">
-      {/* Layer 0: Sequence Engine */}
-      <SequenceBackground />
+      {/* Layer 0: Sequence Engine with Parallax */}
+      <div ref={bgRef} className="absolute inset-0 z-0 h-[120%] -top-[10%]">
+        <SequenceBackground />
+      </div>
 
       {/* Layer 1: The Dark Scrim for Perfect Contrast */}
       <div className="absolute inset-0 bg-black/60 z-10 pointer-events-none" />
@@ -68,24 +88,24 @@ export function Hero() {
           <div className="hero-element flex flex-col sm:flex-row items-center justify-start gap-6 text-left">
             
             {/* Primary Button */}
-            <button className="group relative flex h-14 items-center justify-between rounded-none bg-[#FCD000] pl-8 pr-2 transition-all duration-500 hover:bg-[#F8C200] active:scale-[0.98]">
+            <button className="group relative flex h-14 items-center justify-between rounded-full bg-[#FCD000] pl-8 pr-2 transition-all duration-500 hover:bg-[#F8C200] active:scale-[0.98]">
               <span className="font-gilmer text-base font-bold tracking-wide text-black mr-6">
                 Partner With Us
               </span>
               {/* Nested Trailing Icon */}
-              <div className="flex h-10 w-10 items-center justify-center rounded-none bg-black/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:bg-black/20">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px] group-hover:scale-105 group-hover:bg-black/20">
                 <ArrowUpRight className="h-5 w-5 text-black" />
               </div>
             </button>
 
             {/* Secondary Ghost Button */}
-            <button className="group relative flex h-14 items-center justify-between rounded-none border border-[#333333] bg-black/40 pl-8 pr-2 backdrop-blur-md transition-all duration-500 hover:bg-[#111] hover:border-[#666666] active:scale-[0.98]">
-              <span className="font-gilmer text-base font-bold tracking-wide text-white mr-6 transition-colors group-hover:text-[#FCD000]">
+            <button className="group relative flex h-14 items-center justify-between rounded-full border border-white/20 bg-white/5 pl-8 pr-2 backdrop-blur-md transition-all duration-500 hover:bg-white/10 active:scale-[0.98]">
+              <span className="font-gilmer text-base font-bold tracking-wide text-white mr-6 transition-colors group-hover:text-white">
                 Explore Our Solutions
               </span>
               {/* Nested Inner Highlight */}
-              <div className="shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] border border-white/5 flex h-10 w-10 items-center justify-center rounded-none bg-white/5 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:bg-white/10">
-                <ArrowUpRight className="h-4 w-4 text-white opacity-50 group-hover:opacity-100 group-hover:text-[#FCD000]" />
+              <div className="shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] border border-white/10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px] group-hover:scale-105 group-hover:bg-white/20">
+                <ArrowUpRight className="h-4 w-4 text-white opacity-90 group-hover:opacity-100" />
               </div>
             </button>
 
