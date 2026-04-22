@@ -33,9 +33,9 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-      className="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 px-6 pointer-events-none"
+      className="fixed top-0 left-0 w-full z-50 flex justify-center pointer-events-none"
     >
-      <div className="pointer-events-auto flex items-center justify-between w-full bg-black/60 backdrop-blur-2xl border border-white/10 rounded-none px-8 py-6 shadow-2xl transition-all duration-300">
+      <div className="pointer-events-auto flex items-center justify-between w-full bg-transparent px-8 py-6 transition-all duration-300">
         
         {/* Brand */}
         <Link href="/" className="font-gilmer font-bold text-white text-xl tracking-tighter">

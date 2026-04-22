@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 export function NewsInsights() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -60,10 +60,10 @@ export function NewsInsights() {
         ))}
       </div>
 
-      <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32 relative z-10 flex flex-col md:flex-row items-start align-left text-left w-full gap-16">
+      <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-start text-left w-full">
         
         {/* Left Side: Editorial Split (Text & List) */}
-        <div className="w-full md:w-1/2 flex flex-col">
+        <div className="flex flex-col w-full">
           <div className="flex w-full justify-between items-end mb-16 border-b border-white/10 pb-6 flex-wrap gap-4">
             <div className="flex flex-col items-start">
                <div className="news-item mb-4 inline-flex items-center gap-2 rounded-full border border-[#FCD000]/20 bg-[#FCD000]/5 py-1 px-3">
@@ -76,13 +76,11 @@ export function NewsInsights() {
                </h2>
             </div>
             
-            <button className="news-item group relative flex h-12 items-center justify-between rounded-full border border-white/20 bg-white/5 pl-6 pr-1 backdrop-blur-md transition-all duration-500 hover:bg-white/10 active:scale-[0.98]">
-               <span className="font-gilmer text-sm font-bold tracking-wide text-white mr-4 transition-colors group-hover:text-white">
-                 All Insights
-               </span>
-               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-white/20 group-hover:translate-x-1 group-hover:-translate-y-[1px] group-hover:scale-105">
-                 <ArrowRight className="h-4 w-4 text-white opacity-80 group-hover:opacity-100" />
-               </div>
+            <button className="news-item group relative flex h-14 items-center justify-between rounded-none border border-[#333333] bg-transparent px-8 transition-all duration-500 hover:border-white/40 active:scale-[0.98]">
+              <span className="font-gilmer text-sm font-bold tracking-wide text-white mr-6 transition-colors group-hover:text-white">
+                All Insights
+              </span>
+              <ArrowDown className="h-4 w-4 text-white transition-transform duration-500 group-hover:translate-y-1" />
             </button>
           </div>
 
@@ -90,30 +88,27 @@ export function NewsInsights() {
             {news.map((item, idx) => (
               <div 
                 key={idx} 
-                className="news-item flex flex-col items-start text-left group cursor-pointer border-b border-white/5 py-8 transition-colors duration-500 hover:border-[#FCD000]/50"
+                className="news-item flex flex-col items-start text-left group cursor-pointer border-b border-white/5 py-5 transition-colors duration-500 hover:border-[#FCD000]/50"
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >
-                <div className="flex w-full items-center justify-between mb-4">
-                   <span className="text-[#666666] font-metro text-xs tracking-[0.2em] uppercase group-hover:text-[#999] transition-colors">{item.date}</span>
+                <div className="flex w-full items-center justify-between mb-2">
+                   <span className="text-[#666666] font-metro text-[10px] tracking-[0.2em] uppercase group-hover:text-[#999] transition-colors">{item.date}</span>
                    <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center bg-white/5 transition-all duration-500 group-hover:scale-110 group-hover:bg-[#FCD000] group-hover:border-[#FCD000]">
                       <ArrowUpRight className="w-3 h-3 text-[#999] group-hover:text-black transition-colors" />
                    </div>
                 </div>
                 
-                <h3 className="text-2xl lg:text-3xl font-gilmer font-bold text-white group-hover:text-[#FCD000] transition-colors duration-300 mb-3 max-w-lg tracking-tight">
+                <h3 className="text-xl lg:text-2xl font-gilmer font-bold text-white group-hover:text-[#FCD000] transition-colors duration-300 max-w-lg tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-[#999999] font-metro text-base md:text-lg max-w-md leading-relaxed group-hover:text-white/80 transition-colors">
-                  {item.desc}
-                </p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Right Side: Hover-Reveal Split Image */}
-        <div className="hidden md:flex w-full md:w-1/2 sticky top-32 h-[600px] flex-col items-center justify-center relative">
+        <div className="hidden md:flex w-full sticky top-32 h-[600px] flex-col items-center justify-center relative">
           {news.map((item, idx) => (
             <div
               key={idx}

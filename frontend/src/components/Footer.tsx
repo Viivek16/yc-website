@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function Footer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -45,13 +45,11 @@ export function Footer() {
               Partner with Yellow Capital to access institutional-grade market making, programmatic treasury management, and strategic venture advisory.
             </p>
             
-            <button className="footer-element group relative flex h-14 items-center justify-between rounded-none bg-[#FCD000] pl-8 pr-2 transition-all duration-500 hover:bg-[#F8C200] active:scale-[0.98]">
+            <button className="footer-element group relative flex h-14 items-center justify-between rounded-none bg-[#FCD000] px-8 transition-all duration-500 hover:bg-[#F8C200] active:scale-[0.98]">
               <span className="font-gilmer text-base font-bold tracking-wide text-black mr-6 uppercase">
                 Get in Touch
               </span>
-              <div className="flex h-10 w-10 items-center justify-center rounded-none bg-black/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:bg-black/20">
-                <ArrowUpRight className="h-5 w-5 text-black" />
-              </div>
+              <ArrowRight className="h-5 w-5 text-black transition-transform duration-500 group-hover:translate-x-1" />
             </button>
           </div>
 

@@ -1,14 +1,25 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SequenceBackground } from "./SequenceBackground";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+  
+  const phrases = ["Algorithmic Precision.", "Strategic Capital.", "Aligned Liquidity."];
+  const [currentPhrase, setCurrentPhrase] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPhrase((prev) => (prev + 1) % phrases.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -71,12 +82,23 @@ export function Hero() {
         <div className="w-full max-w-4xl flex flex-col items-start relative">
           
           {/* Main Headline */}
-          <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] leading-[1.02] tracking-tighter text-white font-gilmer font-bold text-left text-balance relative">
+          <h1 className="hero-element text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] leading-[1.1] tracking-tighter text-white font-gilmer font-bold text-left text-balance relative">
             Institutional Liquidity.
             <br />
-            <span className="text-[#FCD000] italic pr-2"> Algorithmic Precision.</span>
-            <br />
-            Strategic Capital.
+            <div className="h-[1.2em] overflow-hidden relative w-full block">
+              <AnimatePresence mode="popLayout">
+                <motion.span
+                  key={currentPhrase}
+                  initial={{ y: 80, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -80, opacity: 0 }}
+                  transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+                  className="text-[#FCD000] italic pr-2 absolute left-0"
+                >
+                  {phrases[currentPhrase]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
           </h1>
 
           {/* Sub-headline */}
@@ -88,25 +110,19 @@ export function Hero() {
           <div className="hero-element flex flex-col sm:flex-row items-center justify-start gap-6 text-left">
             
             {/* Primary Button */}
-            <button className="group relative flex h-14 items-center justify-between rounded-full bg-[#FCD000] pl-8 pr-2 transition-all duration-500 hover:bg-[#F8C200] active:scale-[0.98]">
+            <button className="group relative flex h-14 items-center justify-between rounded-none bg-[#FCD000] px-8 transition-all duration-500 hover:bg-[#F8C200] active:scale-[0.98]">
               <span className="font-gilmer text-base font-bold tracking-wide text-black mr-6">
                 Partner With Us
               </span>
-              {/* Nested Trailing Icon */}
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px] group-hover:scale-105 group-hover:bg-black/20">
-                <ArrowUpRight className="h-5 w-5 text-black" />
-              </div>
+              <ArrowRight className="h-5 w-5 text-black transition-transform duration-500 group-hover:translate-x-1" />
             </button>
 
             {/* Secondary Ghost Button */}
-            <button className="group relative flex h-14 items-center justify-between rounded-full border border-white/20 bg-white/5 pl-8 pr-2 backdrop-blur-md transition-all duration-500 hover:bg-white/10 active:scale-[0.98]">
+            <button className="group relative flex h-14 items-center justify-between rounded-none border border-[#333333] bg-transparent px-8 transition-all duration-500 hover:border-white/40 active:scale-[0.98]">
               <span className="font-gilmer text-base font-bold tracking-wide text-white mr-6 transition-colors group-hover:text-white">
                 Explore Our Solutions
               </span>
-              {/* Nested Inner Highlight */}
-              <div className="shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] border border-white/10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px] group-hover:scale-105 group-hover:bg-white/20">
-                <ArrowUpRight className="h-4 w-4 text-white opacity-90 group-hover:opacity-100" />
-              </div>
+              <ArrowDown className="h-4 w-4 text-white transition-transform duration-500 group-hover:translate-y-1" />
             </button>
 
           </div>

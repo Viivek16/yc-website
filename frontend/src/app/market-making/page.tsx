@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowDown, ChevronDown } from "lucide-react";
 import { OrbitalBackground } from "@/components/OrbitalBackground";
 import { Footer } from "@/components/Footer";
 
@@ -77,18 +77,17 @@ export default function MarketMakingPage() {
             We replace hidden price pressure and sudden volatility with a multi-layered liquidity framework engineered for sustainable growth.
           </p>
           <div className="mm-hero flex flex-col sm:flex-row gap-6">
-            <button className="group relative flex h-14 items-center justify-between rounded-none bg-[#FCD000] pl-8 pr-2 transition-all duration-500 hover:bg-[#F8C200] active:scale-[0.98]">
+            <button className="group relative flex h-14 items-center justify-between rounded-none bg-[#FCD000] px-8 transition-all duration-500 hover:bg-[#F8C200] active:scale-[0.98]">
               <span className="font-gilmer text-base font-bold tracking-wide text-black mr-6">
                 Get in Touch
               </span>
-              <div className="flex h-10 w-10 items-center justify-center rounded-none bg-black/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-1">
-                <ArrowUpRight className="h-5 w-5 text-black" />
-              </div>
+              <ArrowRight className="h-5 w-5 text-black transition-transform duration-500 group-hover:translate-x-1" />
             </button>
-            <button className="group relative flex h-14 items-center justify-between rounded-none border border-[#333333] bg-black/40 pl-8 pr-2 backdrop-blur-md transition-all duration-500 hover:bg-[#111] hover:border-[#666666] active:scale-[0.98]">
-              <span className="font-gilmer text-base font-bold tracking-wide text-white mr-6 group-hover:text-[#FCD000]">
+            <button className="group relative flex h-14 items-center justify-between rounded-none border border-[#333333] bg-transparent px-8 transition-all duration-500 hover:border-white/40 active:scale-[0.98]">
+              <span className="font-gilmer text-base font-bold tracking-wide text-white mr-6 transition-colors group-hover:text-white">
                 Know More
               </span>
+              <ArrowDown className="h-4 w-4 text-white transition-transform duration-500 group-hover:translate-y-1" />
             </button>
           </div>
         </section>
